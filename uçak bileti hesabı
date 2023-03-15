@@ -1,0 +1,60 @@
+import java.util.Scanner;
+public class ucusucretiHesaplama {
+
+	public static void main(String[] args) {
+		// Normal Tutar = Mesafe * 0.10 = 1500 * 0.10 = 150 TL
+	    //	Yaş İndirimi = Normal Tutar * Yaş İndirim Oranı = 150 * 0.10= 15 TL
+		//İndirimli Tutar = Normal Tutar – Yaş İndirimi = 150 – 15 = 135 TL
+      	//	Gidiş Dönüş Bilet İndirimi = İndirimli Tutar * 0.20 = 135 * 0.20 = 27 TL
+		//Toplam Tutar = (135-27)* 2 = 216 TL
+		
+		//Kişi 12 yaşından küçükse bilet fiyatı üzerinden %50 indirim uygulanır.
+		//Kişi 12-24 yaşları arasında ise bilet fiyatı üzerinden %10 indirim uygulanır.
+		//Kişi 65 yaşından büyük ise bilet fiyatı üzerinden %30 indirim uygulanır.
+		//Kişi "Yolculuk Tipini" gidiş dönüş seçmiş ise bilet fiyatı üzerinden %20 indirim uygulanır.
+		
+		int yaş,tip,km,bilet=200;
+		Scanner input=new Scanner(System.in);
+		
+		System.out.print("mesafeyi metre cinsinden giriniz:");
+		km=input.nextInt();
+		
+		System.out.print("yolculuk yapacak kişinin yaşı:");
+		yaş=input.nextInt();
+		
+		System.out.print("yolculuk tipini seçiniz tek yön=1,gidiş-dönüş=2:");
+		tip=input.nextInt();
+		
+		double normalFiyat,yaşindirimi,tipindirimi;
+	
+		if ((km>0 && yaş>0) && (tip==1||tip==2)) { 
+		normalFiyat= km*0.10;
+		
+		if(yaş< 12) {
+		yaşindirimi=normalFiyat*0.5;		
+	    
+		 }else if(yaş<24 || yaş>12) {
+			 yaşindirimi=normalFiyat*0.10;	
+				
+		 }
+		 
+		 if(yaş>65) {
+			 yaşindirimi=normalFiyat*0.30;		
+				
+		 }else {
+		 yaşindirimi=0;	
+		 }
+		 if(tip==2) {
+			 tipindirimi=normalFiyat*0.20;		
+			normalFiyat=(normalFiyat-tipindirimi)*2	;
+		 }
+		
+			System.out.println("Bilet tutarı:"+ normalFiyat +"$");
+
+		
+		 } else {
+			System.out.println("girilen bilgiler eksik veya hatalı");
+		}
+		
+}
+}
